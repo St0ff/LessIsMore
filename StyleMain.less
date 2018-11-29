@@ -1,0 +1,3989 @@
+﻿@import url("MixIn.less");
+/*Less Variables*/
+@color-base: #ffbd36;
+@color-secondary:lighten(@color-base,5%);
+@color-tertiary: darken(@color-base,12%);
+@color-compliment1: #f2f2f2; /*Grey color in Grids*/
+@color-compliment2: #BBE5D7; /*Neon Green Hover*/
+@color-button-top:lighten(@color-base,5%);  //77b55a
+@color-button-bottom:darken(@color-base, 10%);  //72b352
+
+@font-size-small:1.0rem;
+@font-size-medium:1.6rem;
+@font-size-large:2.0rem;
+
+@BackgroundImage: url(/images/MainBG.jpg) no-repeat center center fixed;
+
+@tablet: ~"only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)"; //    ~"only screen and (max-width: 767px)";
+@tablet-portrait: ~"only screen and (max-width: 767px) and (orientation: portrait)";
+@smartphones: ~"only screen and (max-width: 667px)";
+@smartphones-portrait: ~"only screen and (max-width: 667px) and (orientation: portrait)";
+
+/*END Less Variables*/
+
+/*#region Reset Browsers*/
+
+/****************************************/
+/*         MASTER STYLESHEET            */
+/*   Reset Default Browser Settings     */
+/****************************************/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+a img, :link img, :visited img {
+    border: none;
+}
+
+a:focus {
+    outline: 0;
+}
+
+:link, :visited {
+    text-decoration: none;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var, label {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+caption, th {
+    text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+/*#endregion*/
+
+//iOS fixes
+*{
+    -webkit-tap-highlight-color: transparent;
+}
+
+/*div, a, section, article, span, img, h1, h2, h3, h4, h5, h6 {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}*/
+
+//arrow keys on number fields removed firefox
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input[type=date] {
+    -webkit-appearance: textfield;
+    -webkit-min-logical-width: 120px;
+}
+
+html
+{
+    font-size:100.01%;
+    height:100%;
+
+    //smoothing font
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+
+    background: @BackgroundImage;
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size: cover;
+
+    background-position-x:right;
+    background-position-y:top;
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+    }
+
+body
+{
+    font-family:Helvetica, Arial, sans-serif;
+    font-size:62.5%;
+    overflow: scroll;
+    /*Added from MyPort Styling*/
+    color:#000;
+    margin-left:auto;
+    margin-right:auto;
+    height:100%;
+    line-height: 1;
+}
+
+/*#region general*/
+.Hide{display:none}
+.ForceHide{display:none !important}
+
+.InLineB{display:inline-block}
+.center{margin-left:auto;margin-right:auto}
+
+.placeholder{color: #aaa}
+.borRed{border: 1px solid #F00 !important}
+.bold{font-weight:bold}
+
+.clear{clear:both}
+
+.lblSmall{font-size:1.2em}
+.lbl2XSmall{font-size:1.6em}
+.lblMedium{font-size:1.7em !important}
+.lblLarge{font-size:2.5em}
+.lblSuper{font-size:2.0em}
+.lblMega{font-size:5.0em}
+.lblLudicrous{font-size:8.0em}
+.lblMucho{font-size:3.2em}
+
+.fs1em{font-size:1em !important}
+.fs2em{font-size:2em}
+
+.w10{width:10%}
+.w15{width:15%}
+.w20{width:20%}
+.w25{width:25%}
+.w27{width:27%}
+.w30{width:30%}
+.w35{width:35%}
+.w40{width:40%}
+.w45{width:45%}
+.w50{width:50%}
+.w60{width:60%}
+.w65{width:65%}
+.w70{width:70%}
+.w75{width:75%}
+.w80{width:80%}
+.w90{width:90%}
+.w95{width:95%}
+.w100{width:100%}
+
+.minw125{min-width:125px;}
+.w4em{width:4em;}
+.w5em{width:5em;}
+.w6em{width:6em;}
+.w7em{width:7em;}
+.w10em{width:10em;}
+.w11em{width:11em !important;}
+.w12em{width:12em;}
+.w15em{width:15em;}
+.w25em{width:25em;}
+.w30em{width:30em;}
+.w41em{width:41em;}
+
+.w200px{width:200px;}
+
+.flLeft{float:left}
+.flRight{float:right}
+.flNone{float:none}
+
+.hinputsml{height:.8em;}
+.hinput{height:1.2em;}
+.h5em{height:5em;}
+.h10em{height:10em;}
+
+.lh10{ line-height:1.0em}
+.lh14{ line-height:1.4em}
+.lh16{ line-height:1.6em}
+.lh18{ line-height:1.8em}
+
+.padA10{padding:10px}
+.padA15{padding:15px}
+.pad5{padding:5px}
+.pad8{padding:0px 8px 8px 8px}
+.padR10{padding-right:10px}
+.padL5{padding-left:5px}
+.padB10{padding-bottom:10px}
+.padB25{padding-bottom:25px}
+.padT25{padding-top:25px}
+
+.marL5{margin-left:5px}
+.marL10{margin-left:10px}
+.marL15{margin-left:15px}
+.marL20{margin-left:20px}
+.marL25{margin-left:25px}
+.marL50{margin-left:50px}
+.marT5{margin-top:5px}
+.marT10{margin-top:10px}
+.marT15{margin-top:15px}
+.marT20{margin-top:20px}
+.marT25{margin-top:25px}
+.marT55{margin-top:55px}
+.marT75{margin-top:75px !important}
+.marR5{margin-right:5px}
+.marR10{margin-right:10px}
+.marR15{margin-right:15px}
+.marB2{margin-bottom:2px}
+.marB5{margin-bottom:5px}
+.marB10{margin-bottom:10px}
+.marB15{margin-bottom:15px}
+.marB20{margin-bottom:20px}
+.marB25{margin-bottom:25px}
+.marB45{margin-bottom:45px}
+.marNo{margin:0}
+
+.mar0{margin:0 !important}
+.mar5{margin:5px}
+.mar10{margin:10px}
+.mar15{margin:15px}
+.marcntr{margin:10px auto 10px auto;}
+.marAuto{margin-left:auto;margin-right:auto;}
+
+.maxH75{max-height:75px;}
+.maxH200{max-height:200px;}
+
+.alRight{text-align:right !important}
+.alLeft{text-align:left !important}
+.alCenter{text-align:center !important}
+.alBottom{bottom: 0; }
+
+::-webkit-input-placeholder { color:#DCDCDC; font-style:italic; }
+:-moz-placeholder { color:#DCDCDC; font-style:italic; } /* firefox 19+ */
+:-ms-input-placeholder { color:#DCDCDC; font-style:italic; } /* ie */
+input:-moz-placeholder { color:#DCDCDC; font-style:italic; }
+
+.vaTop{vertical-align:top;}
+.vaBottom{vertical-align:bottom;}
+
+/*#endregion general*/
+
+/*#region Default Global Control Styling*/
+
+fieldset
+{
+    border: 2px solid @color-base !important;
+    padding: 10px;
+    background: @color-compliment1;
+    border-radius:5px;
+    /*opacity: .8;*/
+    margin-bottom:1.0rem;
+
+    legend
+    {
+        font-size: @font-size-small;
+        /*font-size: 2.2em;*/
+        padding: 10px;
+        border: 1px solid @color-base;
+        border-radius: 5px;
+        /*background: linear-gradient(to bottom, @color-base 1%,#FFFFFF 100%);*/
+        /*background: linear-gradient(to bottom, #12aa73  1%,#92eae3  100%);*/
+        /*background: linear-gradient(to bottom,#12aa73 20%,#92eab3 100%);*/
+        background: linear-gradient(to bottom,@color-secondary 20%,#e2eaff 100%);
+        color: black;
+        font-weight: bold;
+    }
+}
+
+input[type=button], input[type=submit], button, .button_type, #MerchantStatementAnchor, .top .dt-buttons a, #aSubmitDeal {
+    -moz-box-shadow: 0px 10px 14px -7px @color-tertiary;
+    -webkit-box-shadow: 0px 10px 14px -7px @color-tertiary;
+    box-shadow: 0px 10px 14px -7px @color-tertiary;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.25, @color-button-top), color-stop(1, @color-button-bottom));
+    background: -moz-linear-gradient(top, @color-button-top 5%, @color-button-bottom 80%);
+    background: -webkit-linear-gradient(top, @color-button-top 5%, @color-button-bottom 80%);
+    background: -o-linear-gradient(top, @color-button-top 5%, @color-button-bottom 80%);
+    background: -ms-linear-gradient(top, @color-button-top 5%, @color-button-bottom 80%);
+    background: linear-gradient(to bottom, @color-button-top 5%, @color-button-bottom 80%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@color-button-top, endColorstr=@color-button-bottom,GradientType=0);
+    -webkit-appearance: none;
+    background-color: @color-secondary;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid @color-base;
+    display: inline-block;
+    cursor: pointer;
+    color: #000;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px @color-compliment1;
+
+    &:hover {
+        cursor: pointer;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, @color-tertiary), color-stop(1, @color-secondary));
+        background: -moz-linear-gradient(top, @color-tertiary 5%, @color-secondary 100%);
+        background: -webkit-linear-gradient(top, @color-tertiary 5%, @color-secondary 100%);
+        background: -o-linear-gradient(top, @color-tertiary 5%, @color-secondary 100%);
+        background: -ms-linear-gradient(top, @color-tertiary 5%, @color-secondary 100%);
+        background: linear-gradient(to bottom, @color-tertiary 5%, @color-secondary 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a',GradientType=0);
+        background-color: @color-tertiary;
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+
+    &:focus {
+        outline: 0 !important;
+        border-color: @color-base;
+        box-shadow: 0 0 5px @color-base;
+    }
+
+    @media @tablet {
+        font-size: @font-size-medium;
+    }
+
+    @media @smartphones {
+        margin: 4px;
+        width: 100%;
+        height: 4.0em;
+    }
+}
+
+select
+{
+    border: 1px solid @color-base;
+    padding: 2px 3px;
+    border-radius: 5px;
+    //font-size: @font-size-small;
+    //margin-right:20px;
+    outline:none;
+
+    &:hover{
+        cursor:pointer;
+        /*background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05,  @color-tertiary), color-stop(1, @color-secondary));
+        background:-moz-linear-gradient(top,  @color-tertiary 5%, @color-secondary 100%);
+        background:-webkit-linear-gradient(top,  @color-tertiary 5%, @color-secondary 100%);
+        background:-o-linear-gradient(top,  @color-tertiary 5%, @color-secondary 100%);
+        background:-ms-linear-gradient(top,  @color-tertiary 5%, @color-secondary 100%);
+        background:linear-gradient(to bottom,  @color-tertiary 5%, @color-secondary 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#72b352', endColorstr='#77b55a',GradientType=0);
+        background-color: @color-tertiary;*/
+    }
+
+    &:active{
+        position:relative;
+        top:1px;
+    }
+
+    &:focus{
+        outline: 0!important;
+        border-color: @color-base;
+        box-shadow: 0 0 5px @color-base;
+    }
+
+    @media @tablet {
+        font-size: @font-size-medium;
+    }
+
+    @media @smartphones {
+        padding:2px 10px;
+        width: 100%;
+    }
+}
+
+/*Checkbox Styling*/
+/*input[type=radio], input[type=checkbox]
+{
+	position:absolute;
+    z-index:-1000;
+    left:-1000px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height:1px;
+    width:1px;
+    margin:-1px;
+    padding:0;
+    border:0;
+}
+
+input[type=radio] + label, input[type=checkbox] + label
+{
+	padding-left:27px;
+	height:22px;
+	display:inline-block;
+	line-height:22px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:2.2em;
+	vertical-align:middle;
+	cursor:pointer;
+    display:inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+input[type=radio]:checked + label , input[type=checkbox]:checked + label
+{
+	background-position: 0 -22px;
+    font-weight:600;
+}
+
+input[type=radio] + label, input[type=checkbox] + label
+{
+    background-image:url(../images/checkbox.png);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    padding-right:5px;
+}*/
+/*END Checkbox Styling*/
+
+/*#endregion*/
+
+/*#region Header Styling*/
+.red {color:#dd6149 !important;}
+.brightRed {color:red !important;}
+.green{color:@color-base;}
+
+.HideBulletin{margin-top:-2000px;}
+
+.header_wrapper
+{
+    text-align:center;
+    width: 100%;
+    position:static;
+    background-size: 100% 110px;
+    background-repeat:no-repeat;
+    height:110px;
+    background-color: rgba(0, 0, 0, .85);
+}
+
+.header
+{
+    max-width: 980px;
+    margin: 0 auto;
+    height: 80px;
+
+    .logo
+    {
+        padding:10px 0px;
+        float:left;
+        max-width:25%;
+        max-height:66px;
+        margin-left: 2.5%;
+
+        img
+        {
+            width:100%;
+            height:100%;
+        }
+
+        .imgMobile
+        {
+            text-align:left !important;
+            width:40%;
+            height:35px;
+        }
+    }
+
+    .login
+    {
+        float:right;
+        margin-right: 2.5%;
+        margin-top:10px;
+        max-width:25%;
+
+        ul
+        {
+            margin-top:5px;
+
+            li
+            {
+                margin-bottom:8px;
+
+                span
+                {
+                    font-size:1.5em;
+                    font-weight:bold;
+                    color:white;
+                    display:inline-block;
+                    max-width:100%;
+                }
+
+                input
+                {
+                  max-width: 270px;
+                  width: 90%;
+                  border-radius: 5px;
+                  padding: 5px;
+                  opacity: .8;
+                  background-color: white;
+                  color: black;
+                  font-weight: bold;
+                }
+
+                label
+                {
+                    display:inline;
+                }
+            }
+        }
+    }
+
+    /*Login Wide - Styling for UserName, SubMenu, Alert Bell*/
+    .loginWide
+    {
+        float:right;
+        margin-right: 2.5%;
+        margin-top:10px;
+        max-width:70%;
+
+        ul li
+        {
+            display: inline-block;
+            margin-left:5px;
+            margin-right:5px;
+            position:relative;
+
+            span
+            {
+                font-size:1.5em;
+                font-weight:bold;
+                color:white;
+            }
+
+            input
+            {
+              max-width: 270px;
+              width: 90%;
+              border-radius: 5px;
+              padding: 5px;
+              background-color: transparent;
+              color: white;
+              font-weight: bold;
+              border:none;
+            }
+
+            img
+            {
+                height:35px;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .nav
+    {
+      margin-bottom: 30px;
+      margin-top:1%;
+      display: inline-block;
+    }
+}
+
+#EMSLogo
+{
+    //content:url(../images/MyPortLogoGreen.png);
+    text-align:left !important;
+
+    &:hover
+    {
+        content:url(../images/MyPortLogoWhite.png);
+    }
+}
+
+.lblOffice
+{
+    color:black !important;
+}
+
+#liUserName
+{
+    /*text-align: right !important;
+    width: 200px;*/
+}
+
+#NavSubMenu img
+{
+  height: 10px;
+  margin-left: 10px;
+  cursor:pointer;
+}
+
+.AlertBell
+{
+    cursor:pointer;
+}
+
+.AlertBellClicked
+{
+    cursor:pointer;
+    background-color: white;
+    border: 2px solid @color-base;
+    border-bottom: none;
+}
+
+.AlertDiv
+{
+      background-color: white;
+      border-radius: 10px;
+      border: 2px solid @color-base;
+      width: 250px;
+      transition: visibility 0.65s ease-in;
+      z-index:999;
+      position: absolute;
+      border-top-right-radius: 0px;
+      border-top: none;
+      right: 0;
+
+    .Alertli
+    {
+        /*Needed to set hover this way because AlertDiv has z-index of 999*/
+        &:hover
+        {
+        border-radius: 5px;
+        background-color:@color-compliment2 !important;
+        }
+    }
+
+    ul
+    {
+        li
+        {
+            width:95%;
+        }
+    }
+
+    label
+    {
+        font-size:1.5em;
+        color:black;
+        margin-bottom:5px;
+    }
+}
+
+.NewAlertli
+{
+    border-bottom:1px solid black;
+    margin-bottom:5px;
+}
+
+.NewAlertlbl
+{
+    margin-top:5px;
+    margin-bottom:5px;
+    font-weight:bold;
+    color:#dd6149 !important;
+}
+
+.PrevAlertshl
+{
+    font-size: 1.7em;
+    color: @color-base;
+    font-weight: bold;
+    text-decoration:none;
+}
+
+.PswdExpireli
+{
+    border-top:1px solid black;
+    margin-top:5px;
+}
+
+.PswdExpirelbl
+{
+    margin-top:5px;
+    margin-bottom:5px;
+    font-weight: bold;
+    color: #dd6149 !important;
+}
+
+.Alertli
+{
+    text-align:left;
+    width: 210px!important;
+    padding:5px;
+}
+
+.AlertHdr
+{
+    margin-bottom:5px;
+    cursor:pointer;
+    color: black;
+    font-weight: bold;
+}
+
+.AlertHdrFull
+{
+    word-wrap:break-word;
+}
+
+.AlertDesc
+{
+    font-weight: normal;
+    cursor:pointer;
+    color: black;
+}
+
+.AlertDescFull
+{
+    font-weight:normal;
+    word-wrap:break-word;
+    color: black;
+    margin-bottom:5px;
+}
+
+.AlertTime
+{
+    font-weight:normal;
+    cursor:pointer;
+    color: black;
+}
+
+.liRead
+{
+    margin-bottom:10px;
+}
+
+.lblMarkRead
+{
+    width: 45%;
+    display: inline;
+    color: #dd6149 !important;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.cbMarkRead input[type=checkbox]
+{
+    width:10% !important;
+}
+
+.arrow-down
+{
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+	border-top: 12px solid white;
+    color:white;
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    &:hover
+    {
+        cursor:pointer;
+        border-top: 12px solid @color-compliment2 !important;
+    }
+}
+
+.grdArrow-down
+{
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+	border-top: 10px solid @color-base;
+    color:white;
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    &:hover
+    {
+        cursor:pointer;
+        border-top: 12px solid @color-compliment2 !important;
+    }
+}
+
+#LoginUL
+{
+    background:black;
+    border-radius:5px;
+    opacity: .8;
+    width: 200px;
+    transition: visibility 0.65s ease-in;
+    z-index: 999;
+    position:absolute;
+    padding:0;
+    margin-top:30px;
+    right:1%;
+
+    li
+    {
+        border-bottom: 1px solid @color-base;
+        width:100%;
+        height:30px;
+        display: block;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-bottom: 8px;
+
+        &:hover
+        {
+            visibility: visible;
+        }
+
+        a
+        {
+            color: white;
+            font-size: 1.7em;
+            text-decoration: none;
+            width: auto;
+            float:left;
+            margin-left:10px;
+
+            &:hover
+            {
+                color:@color-base;
+                text-decoration:underline;
+            }
+
+            img
+            {
+                height:18px;
+                margin-right:10px;
+                vertical-align: bottom;
+            }
+        }
+
+        img
+        {
+            height:18px;
+            margin-right:5px;
+            vertical-align: bottom;
+        }
+    }
+}
+
+.liLogout
+{
+    img
+    {
+        vertical-align:text-bottom !important;
+        margin-right:8px;
+    }
+
+    input
+    {
+        width:32% !important;
+        margin-right:40%;
+        font-size:1.5em;
+        font-weight: normal !important;
+
+        /*Remove Default Input Styling*/
+        box-shadow: none;
+        background: black;
+        text-shadow: none;
+
+        &:hover
+        {
+            color:@color-base !important;
+            text-decoration:underline;
+            background:black;
+            background-color:black;
+        }
+    }
+}
+
+.navUL li
+{
+  float: left;
+}
+
+.SubNavBar
+{
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+
+    li
+    {
+       display:inline-block;
+    }
+}
+
+/*Slide Navigation*/
+.toggle
+{
+    cursor:pointer;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    padding: 15px 25px;
+    font-weight: bold;
+    font-size: 2em;
+    position: relative;
+
+    -webkit-transition: color .25s;
+    -moz-transition: color .25s;
+    -ms-transition: color .25s;
+    -o-transition: color .25s;
+    transition: color .25s;
+
+    &:hover
+    {
+        color:@color-compliment2 !important;
+
+        /*Animation Under Nav Links. Removed because it required two clicks on mobile devices*/
+        /*&:before
+        {
+        width: 100%;
+        }*/
+    }
+
+    &:after
+    {
+        content: "";
+        display: block;
+        position: absolute;
+        right: -3px;
+        top: 19px;
+        height: 6px;
+        width: 6px;
+        background: #ffffff;
+        opacity: .5;
+    }
+
+    &:before
+    {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 0;
+        background: @color-compliment2;
+
+        -webkit-transition: width .25s;
+        -moz-transition: width .25s;
+        -ms-transition: width .25s;
+        -o-transition: width .25s;
+        transition: width .25s;
+    }
+}
+
+/*Removes Square from last li*/
+.navUL li.last > label:after,
+.navUL li:last-child > label:after
+{
+    display: none;
+}
+
+/*Class is added dynamically in JS when Nav li is selected*/
+.ToggleSelect
+{
+    transition: border-bottom 0.5s ease;
+    padding-bottom: 12px;
+    border-bottom: 3px solid @color-compliment2;
+
+    &:before
+    {
+        content:none;
+    }
+}
+
+.buttonToggle
+{
+    cursor:pointer;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 1.7em;
+    background:@color-base;
+    border-radius:3px;
+    line-height:20px;
+    text-align:center;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    :hover
+    {
+        background: rgba(255, 255, 255, 0.6);
+    }
+}
+
+.pollSliderLeft
+{
+    position:fixed;
+    height:90%;
+    background:black;
+    /*width:300px;*/
+    width:250px;
+    left:0px;
+    /*margin-left: -300px;*/
+    margin-left: -250px;
+    opacity:0.8;
+    z-index:50;
+}
+
+.PopOutDivWrapper
+{
+    position:fixed;
+    /*opacity:0.8;*/
+    z-index:50;
+    max-width:980px;
+    width:100%;
+    top:110px;
+}
+
+.pollSliderNews{
+    height:auto;
+    background:black;
+    /*width:350px;*/
+    width:260px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+
+.pollSliderRight
+{
+    position:fixed;
+    height:90%;
+    background:black;
+    /*width:300px;*/
+    width:250px;
+    right:0px;
+    /*margin-right: -300px;*/
+    margin-right: -250px;
+    opacity:0.8;
+    z-index:50;
+}
+
+.slideMenu
+{
+    height:90%;
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    width:100%;
+    padding:0;
+
+    li
+    {
+        border-bottom:1px solid @color-base;
+        width:100%;
+        min-height:50px;
+
+        &:hover
+        {
+            border-left:3px solid @color-base;
+            /*Border causes li to expand, width needed adjusted*/
+            width: 99%;
+        }
+
+        ul{
+            padding:0;
+            width:100%;
+            li{
+                width:100%;
+            }
+        }
+
+        a
+        {
+            color:white;
+            font-size:1.8em;
+            text-decoration:none;
+            width:100%;
+            display: inline-block;
+            padding: 1em;
+
+            &:hover
+            {
+                color:@color-base;
+            }
+        }
+
+        input
+        {
+            color:white;
+            font-size:1.8em;
+            text-decoration:none;
+            width:98%;
+            display: inline-block;
+            padding: .9em;
+            background-color:black;
+            text-align:left;
+            border:none;
+            outline:none;
+            /*Remove Default input styling*/
+            box-shadow: none;
+            background: none;
+            border-radius: 0;
+            text-shadow: none;
+            font-weight: normal;
+
+            &:hover
+            {
+                color:@color-base;
+                background: none;
+                background-color: black;
+            }
+        }
+    }
+}
+
+.slideMenuNews
+{
+    color:white;
+    padding:10px;
+
+    label
+    {
+        color:white;
+    }
+
+    a
+    {
+        font-size: 1.8em;
+        color: @color-base;
+        font-weight: bold;
+
+        img
+        {
+            width:95%;
+        }
+    }
+
+    li
+    {
+        /*margin-bottom:15px;*/
+    }
+
+    .lblNewsTitle
+    {
+        color:@color-compliment2;
+        font-weight:bold;
+        font-size:2em;
+    }
+
+    .lblNewsDesc
+    {
+        color:white;
+        font-size:1.8em;
+        margin-bottom: 5px;
+    }
+
+    .lblNewsDate
+    {
+        font-size:2em;
+    }
+}
+
+.lblNewsHdr
+{
+    text-align:center;
+    display:inline-block;
+    margin-left:15%;
+    color:@color-base !important;
+    font-size:2.2em;
+    font-weight:bold;
+}
+
+.close
+{
+  display: inline-block;
+  padding: 1.5em;
+
+    &:hover
+    {
+        cursor:pointer;
+        background-color:@color-base !important;
+    }
+}
+
+.closeIcon
+{
+  width: 24px;
+  height: 4px;
+  border-radius: 1px;
+  margin-bottom: 3px;
+  background-color: #fff;
+}
+
+#closeNews
+{
+    /*margin-left: -130px;*/
+    margin-right: 320px;
+}
+
+/*#endregion END Header Styling*/
+
+.footer {
+         width:100%;
+         line-height:50px;
+         font-size:1.1em;
+         color:#000;
+         text-align:center;
+         margin-top:10px;
+         margin-left:auto;
+         margin-right:auto;
+}
+
+/*#region global media queries*/
+
+/*1024 = Landscap on Ipad Air*/
+@media (max-width: 1024px)
+{
+    .close
+    {
+        padding:.9em;
+    }
+
+    /*Slim down nav links on mobile / table devices*/
+    .slideMenu
+    {
+        width:100%;
+        padding: 0;
+
+        li
+        {
+            min-height:30px;
+
+            a
+            {
+                padding:.5em;
+            }
+
+            input
+            {
+                padding:.5em;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px)
+{
+    .nav
+    {
+        margin-right: 18% !important;
+    }
+
+    .rs800
+    {
+        width:95% !important;
+        margin-left: 2.5% !important;
+        margin-right: 2.5% !important;
+    }
+}
+
+@media (max-width: 710px) {.toggle {padding:15px 15px;}}
+
+@media (max-width: 700px) {
+    .toggle
+    {
+        padding:15px 25px;
+    }
+
+    .rsNav
+    {
+        margin-right:15% !important;
+    }
+
+    .slideMenu
+    {
+        height:80%;
+    }
+}
+
+@media (max-width: 675px) {.toggle {padding:15px 20px;}}
+
+@media (max-width: 620px) {
+    .toggle {padding:10px 40px;}
+
+    .rsNav
+    {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+@media (max-width: 535px) {
+    .toggle {padding:15px 25px;}
+}
+
+@media (max-width: 480px)
+{
+    .rs480
+    {
+        /*float:none !important;*/
+        width:95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .rs480Footer
+    {
+        height:90px;
+    }
+}
+
+/*Media to Adjust Header Links*/
+@media (max-width: 390px)
+{
+    .toggle
+    {
+        font-size:1.5em;
+    }
+}
+
+@media (max-width: 330px)
+{
+    .toggle
+    {
+        padding:15px 15px;
+    }
+}
+
+@media (max-width: 270px)
+{
+    .toggle
+    {
+        font-size:1em;
+    }
+}
+
+/*#endregion*/
+
+/*#region Reset Password Popout Styling*/
+.accountMaint
+{
+    /*background: #181818;*/
+    background:black;
+    color: #FFF;
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 285px;
+    padding: 20px;
+    transition: top 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: center;
+
+    h1
+    {
+        color: #FFF;
+        font-size: 30px;
+        margin-top: 20px;
+        font-weight: 100;
+        margin-bottom: 20px;
+    }
+
+    h2
+    {
+        font-size: 24px;
+        font-weight: normal;
+
+        a
+        {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 100;
+        }
+    }
+
+    ul
+    {
+        li
+        {
+            span
+            {
+                width:160px;
+                font-weight:bold;
+                display:inline-block;
+                text-align:right;
+                font-size:1.4em;
+            }
+
+            input
+            {
+                width:120px;
+                margin-bottom:5px;
+            }
+        }
+    }
+
+    label
+    {
+        font-weight:bold;
+        font-size:1.3em;
+        margin-bottom:10px;
+        color:white;
+    }
+}
+
+@media
+only screen and (max-width: 600px)
+{
+    .accountMaint
+    {
+        height: 380px;
+
+        ul
+        {
+            li
+            {
+                span
+                {
+                    text-align:left;
+                }
+            }
+        }
+    }
+}
+
+/*#endregion Reset Password Popout Styling*/
+
+/*#region Preloader*/
+
+#preloader {
+	background-color:rgba(244, 244, 244, 0.49);
+	bottom: 0;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+#status {
+	background-position: center center;
+	background-repeat: no-repeat;
+	height: 200px;
+	left: 50%;
+	margin: -100px 0 0 -100px;
+	position: absolute;
+	top: 50%;
+	width: 200px;
+}
+
+.spinner
+{
+	margin: 100px auto 0;
+	text-align: center;
+	width: 70px;
+
+    .bounce1
+    {
+	    -webkit-animation: 1.4s ease-in-out 0s normal both infinite bouncedelay;
+	    -o-animation: 1.4s ease-in-out 0s normal both infinite bouncedelay;
+	    animation: 1.4s ease-in-out 0s normal both infinite bouncedelay;
+    }
+
+    .bounce2
+    {
+	    -webkit-animation: 1.4s ease-in-out .16s normal both infinite bouncedelay;
+	    -o-animation: 1.4s ease-in-out .16s normal both infinite bouncedelay;
+	    animation: 1.4s ease-in-out .16s normal both infinite bouncedelay;
+    }
+
+    .bounce3
+    {
+	    -webkit-animation: 1.4s ease-in-out .32s normal both infinite bouncedelay;
+	    -o-animation: 1.4s ease-in-out .32s normal both infinite bouncedelay;
+	    animation: 1.4s ease-in-out .32s normal both infinite bouncedelay;
+    }
+
+    > div
+    {
+	-webkit-border-radius: 100px;
+	-o-border-radius: 100px;
+	border-radius: 100px;
+	display: inline-block;
+	height: 18px;
+	width: 18px;
+    background-color: #2C3E50;
+    }
+}
+
+@-moz-keyframes bouncedelay {
+	0%, 80%, 100% {
+		-moz-transform: scale(0);
+	}
+	40% {
+		-moz-transform: scale(1);
+	}
+}
+@-webkit-keyframes bouncedelay {
+	0%, 80%, 100% {
+		-webkit-transform: scale(0);
+	}
+	40% {
+		-webkit-transform: scale(1);
+	}
+}
+@keyframes bouncedelay {
+	0%, 80%, 100% {
+		transform: scale(0);
+	}
+	40% {
+		transform: scale(1);
+	}
+}
+
+/*#endregion*/
+
+/*#region printing*/
+/*Need to hide the flyouts when printing*/
+@media print
+{.pollSliderLeft, .pollSliderRight, .pollSliderNews {display:none !important;}}
+
+/*#endregion*/
+
+/*#region Standardize for all browsers*/
+body{
+    font-size:62.5%;
+    margin:0;
+}
+
+label{display:block}
+
+.input
+{
+    float:left;
+    margin-bottom:10px;
+    margin-right:5%;
+    text-align:left;
+}
+
+/*#endregion*/
+
+/*#region Standard Elements*/
+
+.lblLink
+{
+    color:#0000EE !important;
+    text-decoration:underline;
+    cursor:pointer;
+
+    &:visited
+    {
+        color: #551A8B;
+    }
+}
+
+.divCreateContainer
+{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+@media
+only screen and (max-width: 800px)
+{
+    .divCreateContainer
+    {
+        width: 95%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+}
+
+/*#region Create Ticket Screen*/
+.divLeft
+{
+    float:left;
+    width:50%
+}
+
+.divRight
+{
+    float:left;
+    width:50%
+}
+
+@media
+only screen and (max-width: 580px)
+{
+    .divLeft, .divRight
+    {
+       padding:12px;
+       margin-top:15px;
+        float:none;
+        width:50%
+    }
+
+    .divControls
+    {
+        ul
+        {
+            li
+            {
+                textarea
+                {
+                    width:80%;
+                }
+            }
+        }
+    }
+}
+
+.divControls
+{
+    float:left;
+    width:100%;
+
+     ul
+    {
+        li
+        {
+            text-align:center; /*Aligns Controls in center of div*/
+        }
+    }
+}
+
+/*#endregion Create Ticket Screen*/
+
+/*CSS for displaying reporting data*/
+.DisplayDataUL, .DisplayDataULCreateTicket
+{
+    li
+    {
+        display:block;
+        margin-bottom:3px;
+
+        span
+        {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1.6em;
+            text-align: right;
+            margin-right: 5px;
+        }
+
+        label
+        {
+            display: inline;
+            font-size: 1.7em;
+            font-weight: 400;
+            text-align: left;
+        }
+    }
+}
+/*END CSS for displaying reporting data*/
+
+/*#region Default Control Styling*/
+
+.Textbox
+{
+    border: 1px solid @color-base;
+    border-radius: 5px;
+    font-size: 1.5em !important;
+    padding: 5px;
+    outline: none;
+
+    &:focus
+    {
+        outline: 0!important;
+        border-color: @color-base;
+        box-shadow: 0 0 5px @color-base;
+    }
+}
+
+.TextArea
+{
+    border:1px solid @color-base;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1.6em;
+    vertical-align: top;
+    outline:none;
+}
+
+.taCommentCT
+{
+    font-size:1.6em;
+    color:@color-base;
+    margin-top: 5px;
+}
+
+.imgSearch
+{
+    height: 21px;
+   // width: 21px;
+    float:none;
+    position:relative;
+    left:2.8em;
+    bottom: -.4em;
+
+    &+ input[type=text]
+    {
+        padding-left:25px !important;
+    }
+}
+
+.btnContainer
+{
+    text-align:center;
+}
+
+.Restrict
+{
+    cursor:not-allowed;
+}
+
+.SearchDiv
+{
+    //position:absolute;
+    margin:3px 5px;
+    //top:185px;
+    z-index: 10;
+    border:1px solid @color-base;
+    border-radius:5px;
+    background-color:#f2f2f2;
+    padding:3px;
+    width:320px;
+
+    @media @smartphones {
+        margin:2px auto;
+        text-align:center;
+    }
+
+    /*margin-top: 10px;
+    margin-bottom:10px;*/
+
+    ul
+    {
+        margin:3px 0;
+        padding-left:0;
+
+        li
+        {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            display: inline-block;
+
+            span
+            {
+                padding-top:8px;
+                padding-right:4px;
+            }
+        }
+    }
+
+    input[type="text"]
+    {
+        border: 1px solid @color-base;
+        border-radius: 5px;
+        font-size: 1.5em;
+        padding: 5px;
+        outline: 0;
+        width:200px;
+        padding-right: 30px;
+
+        &:focus
+        {
+            outline: 0!important;
+            border-color: @color-base;
+            box-shadow: 0 0 5px @color-base;
+        }
+    }
+
+    .spnSearchCounter
+    {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        font-size:14px;
+        position: relative;
+        right: 1em;
+    }
+
+    .divPrevNext
+    {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        display: inline-block;
+        cursor:pointer;
+
+        img
+        {
+            height:10px;
+            width:20px;
+        }
+    }
+
+    .Prev
+    {
+        img
+        {
+            -ms-transform: rotate(90deg); /* IE 9 */
+            -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+            transform: rotate(90deg);
+        }
+    }
+
+    .Next
+    {
+        img
+        {
+            -ms-transform: rotate(-90deg); /* IE 9 */
+            -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+            transform: rotate(-90deg);
+        }
+    }
+
+    .divSearchBtn
+    {
+        cursor:pointer;
+        right: 3.4em;
+        position: relative;
+        bottom: -.3em;
+        height: 21px;
+        width: 21px;
+
+        img
+        {
+            height:18px;
+            width:25px;
+        }
+    }
+}
+
+/*#endregion Default Control Styling*/
+
+/*========================
+Site specific elements
+=========================*/
+
+#lblErrorMsg
+{
+    width:50%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* Alert Ticker */
+.tickercontainer
+{ /* the outer div with the black border */
+    width: auto;
+    height: 27px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+
+    /* that serves as a mask. so you get a sort of padding both left and right */
+    .mask
+    {
+        position: relative;
+        left: 10px;
+        top: 8px;
+        width: auto;
+        overflow: hidden;
+    }
+}
+
+ul.newsticker
+{
+    /* that's your list */
+    position: relative;
+    left: 750px;
+    color: black;
+    font: bold 16px Verdana;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    overflow:hidden;
+    white-space:nowrap;
+
+    li
+    {
+        /*float: left;*/ /* important: display inline gives incorrect results when you check for elem's width */
+        margin: 0;
+        margin-left:5px;
+        margin-right:5px;
+        padding: 0;
+        display:inline-block;
+    }
+
+    a
+    {
+        white-space: nowrap;
+        padding: 0;
+        color: black;
+        font: bold 16px Verdana;
+        margin: 0 50px 0 0;
+
+        &:hover
+        {
+            color:#0a8919;
+        }
+    }
+
+    span
+    {
+        margin: 0 10px 0 0;
+    }
+}
+
+/*HomeRefresh*/
+
+.Main
+{
+    max-width:980px;
+    margin:25px auto;
+
+    span, label
+    {
+        font-size: 2em;
+        color: black;
+        font-weight: bold;
+        margin-bottom:5px;
+    }
+
+    /*div
+    {
+        margin-top:15px;
+    }*/
+
+    table
+    {
+      border-collapse: collapse;
+      width:100%;
+      border:0;
+    }
+
+    //======================================================
+    //Signatures
+
+    .signature{
+        //width:400px;
+        div{
+            text-align:center;
+        }
+
+        ul{
+            display:flex;
+            flex-direction:row;
+            justify-content:center;
+
+            li{
+                a{
+                    .button();
+                    margin:5px 10px;
+                }
+            }
+        }
+    }
+}
+
+/*.ResidualInfo
+{
+    width:95%;
+    margin:2.5%;
+    float:left;
+}*/
+
+.grdEmptyDataTemplate
+{
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  span
+  {
+      font-size:1.5em;
+  }
+
+  #spnEmptyResSum
+  {
+      font-size:2.3em;
+  }
+}
+
+.grdFilterOptions
+{
+    width:80%;
+    margin-left: auto;
+    margin-top: 10px;
+
+    li
+    {
+        display:inline-block;
+        width:20%;
+
+        label
+        {
+            color:#000;
+            display:inline;
+            margin-right: 5%;
+            font-size:1.5em;
+            /*font-size:1.8em;*/
+        }
+
+        select
+        {
+            border:1px solid @color-base;
+            border-radius:5px;
+            outline:none
+        }
+
+        /*input
+        {
+          color: white;
+          background: @color-base;
+          border-radius: 5px;
+          padding: 3px 10px;
+          font-size: 1.5em;
+
+            &:hover
+            {
+                cursor:pointer;
+                background:grey;
+            }
+        }*/
+    }
+}
+
+.GridTextLeft {text-align: left !important;}
+.GridTextCenter {text-align: center !important;}
+
+.grdResInfoDetail
+{
+  width: 80% !important;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.grdContainer
+{
+    margin-top:-15px !important;
+
+    div
+    {
+        margin-top:15px;
+    }
+}
+
+.grdAddHdr tr, .grdSubHdr tr
+{
+    background-color: @color-tertiary !important;
+}
+
+.grdAddHdr tr td, .grdSubHdr tr td
+{
+    border: 4px solid #f2f2f2 !important;
+}
+
+#Addtemp, #Subtemp
+{
+    background-color: #f2f2f2 !important;
+}
+
+.grdAddNested tr, .grdSubNested tr
+{
+    background-color: #f2f2f2 !important;
+}
+
+.grdAddHdr span, #lblAddNestedTrigger, .grdSubHdr span, #lblSubNestedTrigger
+{
+    font-size: 1em;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 5px;
+    cursor:pointer;
+}
+
+.NumVal
+{
+    display: inline;
+    font-size: 1em;
+    color: black;
+    font-weight:normal;
+    margin-left: 5%;
+    font-size:1em !important;
+}
+
+.divGrandTotal
+{
+    float:right;
+    font-size: .7em;
+    /*font-size: .8em;*/
+    background-color: @color-tertiary !important;
+    padding: 5px;
+    /*margin-top: 3px;*/
+    margin-top: 18px;
+    margin-right: 19%;
+}
+
+.divGrandTotal span, .divGrandTotal label
+{
+    display: inline;
+    margin-right: 10px;
+}
+
+.GridFormat
+{
+    tr
+    {
+        /*background-color:#f2f2f2;*/ /*Broke grid styling in Agent Most, Not sure if I need it in MyPort*/
+
+        &:hover
+        {
+            cursor:pointer;
+            background-color:@color-tertiary !important;
+        }
+
+        th
+        {
+            background:#f2f2f2;
+            color:#000;
+            font-weight:bold;
+            border: none;
+            border-bottom: 2px solid @color-base;
+            padding: 10px 5px 10px 5px;
+            font-size: 15px;
+            /*font-size: 17px;*/
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+        td
+        {
+            border:none;
+            padding: 5px 10px 5px 10px;
+            color: #000;
+            font-size: 14px;
+            /*font-size: 16px;*/
+            vertical-align: middle;
+            text-align: right;
+        }
+    }
+
+    .emptyRow
+    {
+        td
+        {
+            &:nth-of-type(1):before { content: ""; }
+        }
+    }
+}
+
+.grdTktSrch
+{
+    tr
+    {
+        td
+        {
+            font-size:12px !important;
+        }
+    }
+}
+
+/*Adds darker gray row color*/
+.RowColor tr:nth-child(2n+1)
+{
+    /*background-color: #d9d9d9;*/
+    background-color: #e2eaf3;
+}
+
+/*Adds GridLines*/
+.RowColor tr td
+{
+    border: 1px solid #cccccc;
+}
+
+.ulNote
+{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+
+    li
+    {
+        margin-bottom:10px;
+
+        span
+        {
+            margin-right:10px;
+        }
+    }
+}
+
+/*Grid Footer Styling*/
+.GridFormatFooter
+{
+    background-color:@color-tertiary !important;
+}
+
+.GridFormatFooter td
+{
+    border:4px solid #f2f2f2 !important;
+}
+
+/*End Grid Footer Styling*/
+
+/*Sets hover color of nested grid row*/
+.NestedGrd tr:nth-child(2n+1) td
+{
+    background-color: #f2f2f2;
+}
+
+.grdResSummaryNested
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -20px;
+
+    tr
+    {
+        td
+        {
+            width:33%;
+
+            label
+            {
+                font-weight: normal;
+                font-size: 1em;
+                text-align:left;
+            }
+
+            .AuthAmt
+            {
+                width: 40%;
+                text-align: right;
+            }
+        }
+    }
+}
+
+/*Crazy syling 5/29/15*/
+.NestAlgnCol
+{
+    padding-right:20% !important;
+}
+
+.NestAlgnColHdr
+{
+    text-align: -webkit-left !important;
+}
+/*End Crazy syling 5/29/15*/
+
+/*Currently Hiding Nested Footer (Might Want it displayed Eventually)*/
+.NestedFooter
+{
+    display:none;
+}
+
+.TableRowHover:hover td {
+    cursor:pointer;
+    background-color:@color-tertiary !important;
+}
+
+.MyPortBtn:hover
+{
+    background:grey;
+}
+
+.GrdToggle
+{
+    float:right;
+    font-size:1.4em;
+    /*color:#0000FF !important;*/
+    color:@color-base;
+    cursor:pointer;
+    width:auto;
+    margin-top: -13px;
+    margin-bottom: 10px;
+
+    &:hover
+    {
+        color:grey;
+    }
+}
+
+/* NotificationMaint Styling */
+.CheckBoxList
+{
+    border:2px solid @color-base;
+    overflow-y: scroll;
+    padding: 10px;
+    border-radius: 5px;
+
+    td
+    {
+        float: left;
+        margin-top:3px;
+        margin-bottom:3px;
+    }
+
+    input[type=checkbox]
+    {
+        display:inline;
+    }
+
+    input[type=text]
+    {
+        border: 1px solid @color-base;
+    }
+
+    input[type=text]:focus
+    {
+        outline: 0!important;
+        border-color: @color-base;
+        box-shadow: 0 0 5px @color-base;
+    }
+
+    label
+    {
+        font-size: 1.5em;
+        display: inline;
+        margin-left: 5px;
+    }
+
+    span
+    {
+        color:@color-base;
+        margin-right: 5%;
+    }
+}
+
+#lblNoRecords
+{
+    display:none;
+    margin-top: 20px;
+    color: red;
+    text-align: center;
+}
+
+.grdNoteSumDescTitle
+{
+    font-size:1em !important;
+    text-align:left !important;
+    display:none;
+}
+
+.grdNoteSumDesc
+{
+    /*width: 350px;*/
+    word-wrap: break-word;
+    font-size: 14px !important;
+    font-weight: normal !important;
+}
+
+/* End NotificationMaint Styling */
+
+/*AccountMaint Styling*/
+.PswdMaint
+{
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+
+    ul
+    {
+        text-align: center;
+        color:black;
+
+        li
+        {
+            label
+            {
+                font-size:1.6em;
+                margin-bottom:10px;
+                font-weight:bold;
+            }
+
+            span
+            {
+                width: 160px;
+                font-weight: bold;
+                display: inline-block;
+                text-align: right;
+                font-size: 1.4em;
+            }
+
+            input[type=text]
+            {
+              width: 30%;
+              margin-bottom: 10px;
+            }
+
+            input[type=submit]
+            {
+              margin:10px;
+            }
+        }
+    }
+}
+/*END AccountMaint Styling*/
+
+@media
+only screen and (max-width: 600px)
+{
+    .GridFormat
+    {
+        thead
+        {
+            tr
+            {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+        }
+
+        tr
+        {
+            th
+            {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            padding:10px;
+        }
+
+        td
+        {
+		    /* Behave  like a "row" */
+		    border: none;
+		    border-bottom: 1px solid #eee;
+		    position: relative;
+		    padding-left: 50%;
+
+            &:before
+            {
+		        /* Now like a table header */
+		        position: absolute;
+		        /* Top/left values mimic padding */
+		        top: 6px;
+		        left: 6px;
+		        width: 45%;
+		        padding-right: 10px;
+		        white-space: nowrap;
+                font-weight:bold;
+	        }
+	    }
+    }
+
+    table
+    {
+        &:first-child tr td
+        {
+            /*border: 1px solid #ccc;*/
+            border-bottom:1px solid #ccc;
+            padding:10px;
+        }
+    }
+
+	/* Force table to not be like tables anymore */
+	table, thead, tfoot, tbody, th, td, tr
+    {
+		display: block;
+    }
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+    /*Hide GV Headers*/
+    tr th
+    {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+	/*tr { border: 1px solid #ccc; padding:10px;}*/
+
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+    /*Sets 'Header' attributes*/
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+        font-weight:bold;
+	}
+
+    /*Label the data*/
+    .grdResInfo
+    {
+        tr
+        {
+            td
+            {
+                &:nth-of-type(1):before { content: "Office:"; text-align:left; }
+                &:nth-of-type(2):before { content: "Merch Count:"; text-align:left; }
+                &:nth-of-type(3):before { content: "Bankcard Vol:"; text-align:left; }
+                &:nth-of-type(4):before { content: "Bankcard Auth:"; text-align:left; }
+                &:nth-of-type(5):before { content: "Residual Amt:"; text-align:left; }
+                &:nth-of-type(6):before { content: "Residual Margin:"; text-align:left; }
+            }
+        }
+
+        /*Label Footer Data*/
+        .grdResInfoFooter
+        {
+            td
+            {
+                width:inherit !important;
+
+                &:nth-of-type(1):before { display:none; }
+                &:nth-of-type(1) { display:none; }
+                &:nth-of-type(2):before { content: "Total Merch Count:"; }
+                &:nth-of-type(3):before { content: "Total Bankcard Vol:"; }
+                &:nth-of-type(4):before { content: "Total Bankcard Auth:"; }
+                &:nth-of-type(5):before { content: "Total Residual Amt:"; }
+                &:nth-of-type(6):before { content: "Total Residual Margin:"; }
+            }
+        }
+    }
+
+    .grdAddHdr, .grdSubHdr
+    {
+        tr
+        {
+            background-color:#f2f2f2 !important;
+
+            &:hover
+            {
+                background-color:#f2f2f2 !important;
+            }
+
+            td
+            {
+                width:95% !important;
+                display:inline-block !important;
+
+                label
+                {
+                    text-align:left;
+                    float:none;
+                }
+
+                #lblAddNestedTrigger
+                {
+                    background-color:@color-tertiary;
+                    padding:10px;
+
+                    &:after
+                    {
+                        content: " (Expand)";
+                    }
+                }
+
+                #AddTotalContainer
+                {
+                    margin:0 !important;
+                    text-align:left;
+                }
+
+                 #lblSubNestedTrigger
+                {
+                    background-color:@color-tertiary;
+                    padding:10px;
+
+                    &:after
+                    {
+                        content: " (Expand)";
+                    }
+                }
+
+                #SubTotalContainer
+                {
+                    margin:0 !important;
+                    text-align:left;
+                }
+            }
+        }
+    }
+
+    .grdResSummaryNested
+    {
+        &:hover
+        {
+            background-color:#f2f2f2 !important;
+        }
+
+        /*removes unneeded hover effects when report is shrunk down*/
+        .NestedHeader:hover, .TableRowHover:hover td
+        {
+            background-color:#f2f2f2 !important;
+        }
+
+        tr
+        {
+            td
+            {
+                width:95% !important;
+                display:inline-block;
+                float:none;
+
+                .AuthDesc
+                {
+                    &:nth-of-type(1):before { content: "Payment Line Desc:"; text-align:left; color:@color-base; font-weight:bold; font-size:1.2em; display:block; margin-bottom:5px; width:100% }
+                }
+
+                .AuthName
+                {
+                    &:nth-of-type(1):before { content: "Account Desc:"; text-align:left; color:@color-base; font-weight:bold; font-size:1.2em; display:block; margin-bottom:5px; width:100% }
+                }
+
+                .AuthAmt
+                {
+                    &:nth-of-type(1):before { content: "Payment Amt:"; text-align:left; color:@color-base; font-weight:bold; font-size:1.2em; display:block; margin-bottom:5px; width:100% }
+                }
+            }
+        }
+    }
+
+    /*.grdTop5byVol tr td:nth-of-type(1):before { content: "Merchant";}*/
+    .grdTop5byVol tr td:nth-of-type(3):before { content: "Office:"; text-align:left;}
+    .grdTop5byVol tr td:nth-of-type(3) {text-align:right !important;}
+    .grdTop5byVol tr td:nth-of-type(4):before { content: "Volume:"; text-align:left;}
+
+    /*.grdTop5byProf tr td:nth-of-type(1):before { content: "Merchant";}*/
+    .grdTop5byProf tr td:nth-of-type(3):before { content: "Office:"; text-align:left;}
+    .grdTop5byProf tr td:nth-of-type(3) {text-align:right !important;}
+    .grdTop5byProf tr td:nth-of-type(4):before { content: "Profitability:"; text-align:left;}
+
+    .grdTop5byVol, .grdTop5byProf
+    {
+        .col1
+        {
+            text-align:right !important;
+            font-weight:bold;
+            margin-bottom:10px;
+        }
+    }
+
+    /*.ulSummaryLeft, .ulSummaryRight
+    {
+        .flex-parent();
+        //float:left;
+        //width:100% !important;
+
+        /*li
+        {
+            span
+            {
+              display: inline-block;
+              font-weight: bold;
+              font-size: 1.8em;
+              text-align: right;
+              margin-right: 2%;
+            }
+
+            label
+            {
+              display: inline;
+              font-size: 1.8em;
+              font-weight: 400;
+              text-align: left;
+            }
+        }
+    }*/
+
+	/*Footer Row Formatting*/
+    .GridFormatFooter{padding:0;}
+
+/*Summary Grid Responsive Styling (Gets Confusing...)*/
+
+/*Sets hover for first row*/
+.GridFormat table tr:hover
+{
+    cursor:pointer;
+    background-color:@color-tertiary !important;
+}
+
+/*Removes hover from nested row*/
+#temp:hover
+{
+    cursor:pointer;
+    background-color:#f2f2f2 !important;
+}
+
+/*Sets attributes for Summary Grid 'Hdr' text*/
+.grdResSummary tr td:before
+{
+    font-weight:bold;
+}
+
+/*Sets Column1 Header Text in Totals Grid*/
+.grdResSummary td:nth-of-type(1):before { content: "Office Count"; }
+
+/*For Some Reason, temp row added Office Count hdr text, this removes it...*/
+#temp td:nth-of-type(1):before { content: "";}
+
+.grdResSummary tr {border:none;}
+
+/*Removes Nested GV Header styling*/
+.NestedHeader
+{
+    border:none !important;
+}
+
+.grdResSummaryNested
+{
+    /*Sets attributes for each 'rows' set of data*/
+    tr
+    {
+        border-top:1px solid #ccc;
+        border-bottom:1px solid #ccc;
+
+        td
+        {
+            /*Sets attributes for Nested Grid 'Hdr' text*/
+            &:before
+            {
+                color:@color-base;
+                font-weight:bold;
+                text-align:left;
+            }
+        }
+    }
+}
+
+/*TicketMaint.aspx Grids*/
+/*Merchant List Grid*/
+.grdMerchList tr td:nth-of-type(1):before { content: "Merchant Number:"; text-align:left; }
+.grdMerchList tr td:nth-of-type(2):before { content: "DBA:"; text-align:left; }
+.grdMerchList tr td:nth-of-type(3):before { content: "Office:"; text-align:left; }
+.grdMerchList tr td:nth-of-type(4):before { content: "Branch:"; text-align:left;}
+.grdMerchList tr td:nth-of-type(5):before { content: "Rep Code:"; text-align:left; }
+.grdMerchList tr td:nth-of-type(6):before { content: "Owner:"; text-align:left; }
+
+/*Open Service Tickets Grid*/
+.grdTktSrch tr td:nth-of-type(1):before { content: "Open:"; text-align:left; }
+.grdTktSrch tr td:nth-of-type(2):before { content: "Ticket:"; text-align:left; }
+.grdTktSrch tr td:nth-of-type(3):before { content: "Last Comment:"; text-align:left; }
+.grdTktSrch tr td:nth-of-type(4):before { content: "CN:"; text-align:left; }
+.grdTktSrch tr td:nth-of-type(5):before { content: "MID:"; text-align:left; }
+.grdTktSrch tr td:nth-of-type(6):before { content: "DBA:"; text-align:left; }
+.grdTktSrch tr td:nth-of-type(7):before { content: "Owner Grp:"; text-align:left; }
+.grdTktSrch tr td:nth-of-type(8):before { content: "Rep:"; text-align:left; }
+.grdTktSrch tr td:nth-of-type(9):before { content: "Problem Type:"; text-align:left; }
+
+/*Open Service Tickets Grid*/
+.GridFormatFooter  td:nth-of-type(1):before { content: "" !important; text-align:left; }
+.GridFormatFooter  td:nth-of-type(2):before { content: "" !important; text-align:left; }
+.GridFormatFooter  td:nth-of-type(3):before { content: "" !important; text-align:left; }
+.GridFormatFooter  td:nth-of-type(4):before { content: "" !important; text-align:left; }
+.GridFormatFooter  td:nth-of-type(5):before { content: "" !important; text-align:left; }
+.GridFormatFooter  td:nth-of-type(6):before { content: "" !important; text-align:left; }
+.GridFormatFooter  td:nth-of-type(7):before { content: "" !important; text-align:left; }
+.GridFormatFooter  td:nth-of-type(8):before { content: "" !important; text-align:left; }
+.GridFormatFooter  td:nth-of-type(9):before { content: "" !important; text-align:left; }
+
+/*Comment History Grid*/
+.grdTktCom tr td:nth-of-type(1):before { content: "Date Added:"; text-align:left; left:-60px;}
+.grdTktCom tr td:nth-of-type(2):before { content: "Owner Grp:"; text-align:left; left:-60px;}
+.grdTktCom tr td:nth-of-type(3):before { content: "Added By:"; text-align:left; left:-60px;}
+.grdTktCom tr td:nth-of-type(4):before { content: "Problem Type:"; text-align:left; left:-60px;}
+.grdTktCom tr td:nth-of-type(5):before { content: "Rep:"; text-align:left; left:-60px;}
+.grdTktCom tr td:nth-of-type(6):before { content: "Comment:"; text-align:left;left:-60px; }
+
+.TicketSearch1{
+    width:95%;
+}
+.TicketSearch1 label{
+    width:50%;
+}
+/*Hierarchy Grids*/
+#liNewSubAgt, #liViewInactiveAgt, #liViewActiveAgt, #liSubAgentBack
+{
+    display:block;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+
+    input[type="button"]
+    {
+        width:100%;
+    }
+}
+
+/*Active Agents Grid*/
+.grdSubAgentList
+{
+    margin-top:50px;
+
+    tr
+    {
+        td
+        {
+            &:nth-of-type(1):before { content: "Username:"; text-align:left; }
+            &:nth-of-type(2):before { content: "Office:"; text-align:left; }
+            &:nth-of-type(3):before { content: "Branch:"; text-align:left; }
+            &:nth-of-type(4):before { content: "Rep Code:"; text-align:left; }
+            &:nth-of-type(6):before { content: "Residuals:"; text-align:left; }
+            &:nth-of-type(7):before { content: "Emails:"; text-align:left; }
+        }
+    }
+}
+
+/*Inactive Agents Grid*/
+.grdInactive
+{
+    margin-top:50px;
+
+    tr
+    {
+        td
+        {
+            &:nth-of-type(1):before { content: "Username:"; text-align:left; }
+            &:nth-of-type(2):before { content: "Branch:"; text-align:left; }
+            &:nth-of-type(3):before { content: "Rep Code:"; text-align:left; }
+            &:nth-of-type(4):before { content: "Inactive Date:"; text-align:left; }
+        }
+    }
+}
+
+/*Sub Agent Detail ul*/
+.DisplayDataUL
+{
+    li
+    {
+        span
+        {
+            text-align:left;
+            float:left;
+        }
+
+        label
+        {
+            margin-top:10px;
+            margin-bottom:10px;
+        }
+
+        input[type="text"]
+        {
+            width:90%;
+            display:block;
+        }
+    }
+}
+
+.divCreateContainer
+    {
+        .divLeft
+        {
+            float:none;
+            width: 100%;
+            margin:0;
+            padding:0;
+
+            ul
+            {
+                li
+                {
+                    margin-top:10px;
+                    margin-bottom:10px;
+                    text-align:left;
+
+                    span
+                    {
+                        display:block;
+                        width:100%;
+                        text-align:left;
+                    }
+                }
+            }
+        }
+
+        .divRight
+        {
+            float:none;
+            width: 100%;
+            margin:0;
+            padding:0;
+
+            ul
+            {
+                li
+                {
+                    margin-top:10px;
+                    margin-bottom:10px;
+                    text-align:left;
+
+                    span
+                    {
+                        display:block;
+                        width:100%;
+                        text-align:left;
+                    }
+                }
+            }
+        }
+    }
+
+/*Sub Agent Detail Merchant List Grid*/
+.grdSubDetail
+{
+    .DisplayDataUL
+    {
+        li
+        {
+            span
+            {
+                float:none;
+            }
+        }
+    }
+
+    tr
+    {
+        td
+        {
+            &:nth-of-type(1):before { content: "Merchant Number:"; text-align:left; }
+            &:nth-of-type(2):before { content: "Branch:"; text-align:left; }
+            &:nth-of-type(3):before { content: "Rep Code:"; text-align:left; }
+            &:nth-of-type(4):before { content: "DBA Name:"; text-align:left; }
+            &:nth-of-type(5):before { content: "Office:"; text-align:left; }
+        }
+    }
+}
+
+.grdSubAgentList tr td input, .grdInactive tr td input
+{
+    width:100%;
+}
+
+/*END Hierarchy Grids*/
+
+/*Notification Maint Grid*/
+.grdNoteSum tr td:nth-of-type(1):before { content: "Title:"; text-align:left; }
+.grdNoteSum tr td:nth-of-type(3):before { content: "Last Modified:"; text-align:left; }
+.grdNoteSum tr td:nth-of-type(4):before { content: "Modified By:"; text-align:left; }
+
+.grdNoteSumDescTitle
+{
+    display:block;
+}
+
+/*END Notification Maint Grid*/
+
+.grdMerchList, .grdTktSrch, .grdSubAgentList, .grdInactive, .grdNoteSum
+{
+    tr
+    {
+        td
+        {
+             text-align:right !important;
+        }
+    }
+}
+ .grdTktCom
+{
+    tr
+    {
+        td
+        {
+            left:60px;
+             text-align:right !important;
+        }
+    }
+}
+
+/*END TicketMaint.aspx Grids*/
+
+/*ProfileMaint.aspx Grids*/
+.divProfileOffices
+{
+   .grdProfileOffices
+   {
+       tr
+       {
+           td
+           {
+               text-align:right !important;
+
+               &:nth-of-type(1):before { content: "Office:"; text-align:left; }
+               &:nth-of-type(2):before { content: "Name:"; text-align:left; }
+               &:nth-of-type(3):before { content: "Phone:"; text-align:left; }
+               &:nth-of-type(4):before { content: "Type:"; text-align:left; }
+           }
+       }
+   }
+}
+
+.divProfileElenPricing
+{
+    ul
+    {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+   .grdProfileElenPricing
+   {
+       tr
+       {
+           td
+           {
+               text-align:right !important;
+
+               &:nth-of-type(2):before { content: "Name:"; text-align:left; }
+               &:nth-of-type(3):before { content: "Office:"; text-align:left; }
+               &:nth-of-type(4):before { content: "Branch:"; text-align:left; }
+               &:nth-of-type(5):before { content: "Rep Code:"; text-align:left; }
+               &:nth-of-type(6):before { content: "Locked:"; text-align:left; }
+           }
+       }
+   }
+}
+/*END ProfileMaint.aspx Grids*/
+}
+
+@media
+only screen and (max-width: 400px)
+{
+    .grdFilterOptions
+    {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+
+        li
+        {
+            width:30%;
+        }
+
+        .liSubmit
+        {
+            width:100%;
+            text-align:center;
+            margin-top:10px;
+        }
+    }
+
+    .SubDetailResBtn
+    {
+        display:block;
+        margin:10px;
+        text-align:center;
+    }
+}
+
+.divTop5byVol {
+    float: left;
+    width: 45%;
+    margin-left: 2.5%;
+    margin-top: 15px;
+
+    ul {
+        li {
+            span {
+                float: left;
+            }
+        }
+    }
+}
+
+.divTop5byVolSubAgt
+{
+    float:left;
+    width: 95%;
+    margin: 15px 2.5%;
+}
+
+.grdTop5byVol, .grdTop5byProf
+{
+    .col1
+    {
+        text-align:left;
+    }
+}
+
+.divTop5byProf
+{
+    float:left;
+    width:45%;
+    margin-left:5%;
+    margin-top:15px;
+
+    ul{
+        li{
+            span{
+                float:left;
+            }
+        }
+    }
+}
+
+.grdSummary
+{
+    width:95%;
+    float:left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left:2.5%;
+    margin-right:2.5%;
+}
+
+.divChart
+{
+    width:95%;
+    float:left;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    margin-left:2.5%;
+    margin-right:2.5%;
+    /*height:400px;*/
+    height:420px;
+
+    fieldset
+    {
+        height:100%;
+    }
+
+    #chartDiv
+    {
+        width:97%;
+
+        /*Formatting Legend*/
+        table
+        {
+            width:95%;
+            background-color:#f2f2f2;
+            border:none;
+            text-align: center;
+            margin-top:30px;
+
+            tr
+            {
+                margin: 10px;
+                font-weight:bold;
+                display:inline-block;
+
+                td
+                {
+                    div
+                    {
+                        margin-right: 3px;
+                    }
+                }
+            }
+        }
+
+        .jqplot-cursor-tooltip
+        {
+            font-size:20px;
+        }
+
+        .jqplot-table-legend-swatch-outline
+        {
+            border:none;
+        }
+
+        /*Styles tool tip*/
+        .pop
+        {
+            .resColor
+            {
+                color:rgb(234, 162, 40);
+            }
+
+            .volColor
+            {
+                color:rgb(75, 178, 197);
+            }
+
+            label
+            {
+                font-size: 1em;
+                display:inline;
+            }
+        }
+    }
+}
+
+.PortfolioStats
+{
+    .flex-parent();
+
+    li
+    {
+        flex: 2 0 50%;
+        display:inline-block;
+        /*float:left;
+        width:50%;*/
+
+        span
+        {
+          display: inline-block;
+          font-weight: bold;
+          font-size: 1.8em;
+          text-align: right;
+          //margin-right: 2%;
+        }
+
+        label
+        {
+          display: inline;
+          font-size: 1.8em;
+          font-weight: 400;
+          text-align: left;
+        }
+    }
+}
+
+.grdHyperlink
+{
+    color:#0000FF !important;
+    cursor:pointer;
+}
+
+/*ProfileMaint.aspx*/
+.divProfileInfo
+{
+    ul
+    {
+        li
+        {
+            display:block;
+            margin:10px;
+            text-align: right;
+            max-width: 50em;
+            margin-left: auto;
+            margin-right: auto;
+
+            label
+            {
+                display:inline-block;
+                font-weight: 700;
+                font-size: 1.6em;
+                margin-right:5px;
+            }
+
+            input[type=text]
+            {
+                width:70%;
+            }
+
+            input[type=submit]
+            {
+                margin:5px;
+            }
+        }
+    }
+}
+
+.divProfileElenPricing
+{
+    ul
+    {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
+
+@media
+only screen and (max-width: 400px)
+{
+    .divProfileInfo
+    {
+        ul
+        {
+            li
+            {
+                label
+                {
+                    display:block;
+                    text-align:left;
+                }
+
+                input[type=text]
+                {
+                    width:95%;
+                    display:block;
+                }
+
+                input[type=submit]
+                {
+                    margin:5px;
+                }
+            }
+        }
+    }
+}
+
+.divProfileOffices
+{
+    margin-top:10px;
+}
+
+.divProfileOfficeDetail
+{
+    ul
+    {
+        margin-left: 5%;
+        margin-right: 5%;
+
+        li
+        {
+            display:block;
+            margin:10px;
+
+            label
+            {
+                display:inline-block;
+                font-weight: 700;
+                font-size: 1.6em;
+                margin-right:5px;
+                width:8em;
+                text-align:right;
+            }
+
+            input[type=text]
+            {
+                /*width:70%;*/
+            }
+
+            input[type=submit]
+            {
+                margin:5px;
+            }
+        }
+    }
+}
+
+.lblW4em{width:4em !important;}
+
+@media
+only screen and (max-width: 400px)
+{
+    .divProfileOfficeDetail
+    {
+        ul
+        {
+            li
+            {
+                display:block;
+                margin:10px;
+
+                label
+                {
+                    display:block;
+                    text-align:left;
+                    margin-top:5px;
+                }
+
+                input[type=text]
+                {
+                    width:95%;
+                }
+            }
+        }
+    }
+}
+/*END ProfileMaint.aspx*/
+
+/***************************************************/
+
+/*#region dlg*/
+
+.dlg
+{
+    .rad_list();
+
+    background:rgb(231,231,231) !important;
+    padding:10px 15px;
+
+    .ui-dialog-titlebar
+    {
+        background: @color-tertiary;
+
+        span
+        {
+            color: #FFF;
+            font-size: 1.2em;
+        }
+    }
+
+    /*Hides Close btn on dialog*/
+    .ui-dialog-titlebar-close
+    {
+        visibility: hidden;
+    }
+
+    span
+    {
+        font-size:1.2em;
+        line-height:1.6em;
+    }
+}
+
+/*#endregion*/
+
+/*  landscape on ipad */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait)
+{
+}
+
+@media print
+{
+    .pgBreak
+    {page-break-after:always}
+}
+
+/*#region New / Refresh */
+
+/*#region site wide custom styling*/
+
+table {
+    width: 100%;
+    border: 0;
+
+    th {
+        color: #000; // @color-base;
+        font-weight: 700;
+        border: none;
+        border-bottom: 2px solid @color-base;
+        padding: 10px 5px 10px 5px;
+        font-size: 14px;
+        text-transform: capitalize;
+        text-align: center;
+        vertical-align: bottom;
+    }
+
+    tbody {
+        tr {
+            &[class^="GridFormatRowBreaker"] {
+                background-color: #a0a0a0;
+                text-align: left;
+
+                &:hover {
+                    background-color: #a0a0a0;
+                    cursor: pointer;
+                }
+            }
+
+            &.GridFormatRowBreak {
+                background-color: #a0a0a0 !important;
+                text-align: left
+            }
+
+            &:nth-child(even) {
+                background-color: #e2eaf3;
+            }
+
+            td {
+                padding: 5px 10px 5px 10px;
+                color: #000;
+                font-size: 12px;
+                vertical-align: middle;
+                text-align: left;
+                border: 0;
+
+                &.GridFormatFooter {
+                    text-align: right !important;
+                    background-color: #e0e0e0;
+                }
+
+                &.Count {
+                    text-align: right !important;
+                }
+
+                &.Currency {
+                    text-align: right !important;
+                }
+
+                &.Percent {
+                    text-align: right !important;
+                }
+            }
+
+            &:hover {
+                background-color: @color-secondary;
+                cursor: pointer;
+            }
+        }
+    }
+
+    thead{
+        tr{
+            &:hover{
+                background-color:none !important;
+            }
+        }
+    }
+
+    &.grdAgentList {
+        tr {
+            &[class^="GridFormatRowBreaker"] {
+                background-color: #a0a0a0;
+                text-align: left;
+
+                &:hover {
+                    background-color: #a0a0a0;
+                    cursor: pointer;
+                }
+            }
+
+            &.GridFormatRowBreak {
+                background-color: #a0a0a0 !important;
+                text-align: left
+            }
+
+            &:nth-child(even) {
+                background-color: #e2eaf3;
+            }
+
+            td {
+                padding: 5px 10px 5px 10px;
+                color: #000;
+                font-size: 12px;
+                vertical-align: middle;
+                text-align: left;
+                border: 0;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                &.GridFormatFooter {
+                    text-align: right !important;
+                    background-color: #e0e0e0;
+                }
+            }
+        }
+    }
+}//end table
+
+//datatables wrapper and objects
+.dataTables_wrapper {
+    .top {
+        .dt-buttons {
+            float: left;
+
+            a {
+            }
+        }
+
+        .dataTables_filter {
+            float: right;
+
+            label {
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+
+            input[type=search] {
+                .Textbox();
+                font-size: 0.6rem;
+            }
+        }
+    }
+
+    th{
+        &:hover{
+            cursor:pointer;
+        }
+    }
+}
+
+//placeholders
+::-webkit-input-placeholder {
+    //font-size: 0.8em;
+    color: black;
+    text-align: left;
+    font: 0.8em/100% lighter;
+}
+
+    :-moz-placeholder
+    { /* older Firefox*/
+      font:0.8em/100% lighter;
+        //font-size: 0.8em;
+        color: black;
+        text-align: left;
+    }
+
+    ::-moz-placeholder
+    { /* Firefox 19+ */
+        //font-size: 0.8em;
+        color: black;
+        text-align: left;
+         font:0.8em/100% lighter;
+    }
+
+    :-ms-input-placeholder
+    {
+        //font-size: 0.8em;
+        color: black;
+        text-align: left;
+         font:0.8em/100% lighter;
+    }
+
+    .expander {
+        height: 1.6em;
+        width: 1.6em;
+        background-size: cover;
+        display: inline-block;
+        -webkit-transition: background-image 0.3s ease-in-out;
+        transition: background-image 0.3s ease-in-out;
+    }
+
+    .plus {
+        background-image: url(data:image/png;base64,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);
+    }
+
+    .minus {
+        background-image: url(data:image/png;base64,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);
+    }
+
+    //master rest for ULs
+    ul{padding:0;}
+
+    //standard header label for each page
+    .pageSubHeader1{
+        color:#000;
+        font-weight:700;
+        font-size:20px;
+        text-shadow:1px 1px 1px #777;
+    }
+
+    //uc_HeaderSelect
+    .searchFields{
+       // min-height:105px;
+        > ul{
+            .flex-parent();
+
+            li{
+                padding:0 10px;
+
+                /*@media @smartphones {
+                    width:100%;
+                    margin:2px auto;
+                }*/
+            }
+
+            @media @smartphones {
+                flex-direction:column;
+                padding:2px 10px;
+                width: 100%;
+            }
+        }
+
+        .datePanel {
+            .flex-parent();
+            text-align: left;
+        }
+    }
+
+    //uc_MerchantInformation
+    .divMerchantInfoUC
+    {
+        .flex-parent(row, @justify-content:flex-start, @align-items:flex-start);
+        max-width:980px;
+        min-width:240px;
+        margin:0 auto;
+
+        > li{
+            vertical-align:top;
+             ul{
+                .flex-parent(column);
+
+                li{
+                    flex-basis:3;
+                    padding:2px;
+
+                    span{
+                            display: inline-block;
+                            font-weight: 700;
+                            font-size: 1.5em;
+                            text-align: right;
+                            margin-right: 5px;
+                            width: 125px;
+
+                        + span{
+                            display: inline-block;
+                            font-size: 1.4em;
+                            font-weight: 400;
+                            text-align: left;
+                            width: 150px;
+                        }
+                    }
+                }
+            }
+
+            &:nth-last-child(1){
+            //display:inline-block;
+            border-top:1px solid @color-base;
+            margin:5px 0;
+            padding:5px 0;
+            width:100%;
+
+                ul{
+                    .flex-parent(row, @justify-content:space-around);
+                }
+            }
+        }
+    }
+
+.blue {
+    background: rgba(0, 0, 255, 0.55);
+}
+/*#endregion*/
+
+/*#region Page Specific styling*/
+
+//Master Page Class (wraps all others)
+.MOST{
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.DateFromTo{
+    .flex-parent();
+    li{
+        label,span{
+            display:inline-block;
+            font-size:12px;
+            font-weight:600;
+        }
+        input[type=text]{
+            .input_text(90px);
+        }
+    }
+}
+
+.MonthlyResiduals {
+    min-width: 100%;
+    margin: 0 auto;
+
+    table {
+        tr {
+            th {
+                color: #000;
+                font-weight: 700;
+                border: none;
+                border-bottom: 2px solid @color-base;
+                padding: 10px 5px 10px 5px;
+                font-size: 18px;
+                text-transform: capitalize;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                &:nth-child(even) {
+                    background-color: #f4f4f4;
+                }
+
+                &:hover:not(.header) {
+                    background-color: @color-tertiary !important;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &#MonthlyResidualsSummaryTable {
+            thead {
+                tr {
+                    th {
+                        text-align:right;
+
+                        &:nth-child(1){
+                            text-align:left;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: none !important;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        padding: 5px 10px 5px 10px;
+                        color: #000;
+                        font-size: 16px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+
+            tfoot {
+                tr {
+                    td {
+                        text-align: right;
+                        padding: 5px 10px 5px 10px;
+                        color: #000;
+                        font-size: 16px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+
+        &.MonthlyResiduals {
+            th {
+                font-size: 14px;
+
+                &.Left {
+                    text-align: left;
+                }
+            }
+
+            tbody {
+                tr {
+                    &:nth-child(even) {
+                        background-color: #e2eaf3;
+                    }
+
+                    td {
+                        padding: 5px 10px 5px 10px;
+                        color: #000;
+                        font-size: 12px;
+                        vertical-align: middle;
+                        text-align: left;
+                        border: 0;
+                    }
+                }
+            }
+
+            tfoot {
+                tr {
+                    border: 0;
+                    border-top: 1px solid #000;
+
+                    td {
+                        text-align: right;
+                        font-weight: 600;
+                        border: 0;
+                        //padding: 5px 10px 5px 10px;
+                        color: #000;
+                        font-size: 13px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.BatchDetailOffice{
+    max-width:960px;
+    margin:0 auto;
+}
+
+.DealsInProcess{
+    input[type=text]{
+        .input_text(80px, @color-base);
+    }
+
+    span{
+        font-weight:600;
+        font-size:14px;
+    }
+
+    ul{
+        .flex-parent(@justify-content:space-around);
+
+        &.dateRange{
+            max-width:420px;
+        }
+
+        &.btnNav{
+            padding:5px 0;
+            border-radius:10px;
+            background-color:rgba(255, 255, 255, 0.42);
+        }
+    }
+}
+
+.ServiceTicketSearch{
+    ul{
+        .flex-parent(@justify-content:space-around);
+
+        li{
+            input[type=text]{
+                .input_text(@focus-glow-color:@color-base);
+            }
+        }
+    }
+}
+
+.SubmittedLeads {
+    margin: 0 2%;
+    padding-top:6px;
+
+    #aSubmitDeal {
+        font-size: 2.4em;
+        /*color: #0645AD ;
+        padding:4px 8px;
+        margin: 5px auto;*/
+    }
+}
+#dlgSubmitLead {
+    max-width:640px;
+    ul {
+        .flex-parent();
+
+        li {
+            flex:2 2 45%;
+            padding:3px 8px;
+            input[type=text], input[type=email], select, textarea{
+                .input_text(100%);
+                font-size:1.4em;
+            }
+            textarea{
+                height:4.2em;
+            }
+        }
+    }
+}
+/*#endregion*/
+/*#endregion*/
